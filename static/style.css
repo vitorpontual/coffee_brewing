@@ -112,3 +112,50 @@ button:hover {
     justify-content: space-between;
     margin-bottom: 5px;
 }
+/* static/style.css */
+
+:root {
+    /* Cores Modo Claro */
+    --bg-color: #f4f1ea;
+    --card-bg: #ffffff;
+    --text-color: #3e2723;
+    --input-border: #d1c4e9;
+    --button-bg: #6f4e37;
+    --button-text: #ffffff;
+}
+
+[data-theme="dark"] {
+    /* Cores Modo Noturno */
+    --bg-color: #1a1a1a;
+    --card-bg: #2d2d2d;
+    --text-color: #f4f1ea;
+    --input-border: #444;
+    --button-bg: #8d6e63;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    transition: all 0.3s ease; /* Suaviza a troca de cores */
+}
+
+.card {
+    background-color: var(--card-bg);
+}
+
+input, select {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid var(--input-border);
+}
+
+/* Adicione um estilo para o botão de troca */
+.theme-toggle {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}

@@ -3,12 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Coffee Calculator</title>
+    <title>Coffee Helper</title>
+    
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Dark Mode">🌙</button>
+
     <div class="card">
         <h2>☕ Coffee Helper</h2>
+        
         <form method="POST">
             <label for="method">Brewing Method</label>
             <select name="method" id="method">
@@ -18,7 +23,7 @@
             </select>
 
             <label for="coffee">Coffee Beans (g)</label>
-            <input type="number" step="0.1" name="coffee" id="coffee" placeholder="e.g. 15.5" required>
+            <input type="number" step="0.1" name="coffee" id="coffee" placeholder="e.g. 15.0" required>
 
             <button type="submit">Calculate Water</button>
         </form>
@@ -26,15 +31,29 @@
         {% if recipe %}
             <div class="result-container">
                 {% if recipe is string %}
-                    <p>{{ recipe }}</p>
+                    <p style="text-align: center; color: #e57373;">{{ recipe }}</p>
                 {% else %}
-                    <div class="result-item"><strong>Método:</strong> <span>{{ recipe.method_name }}</span></div>
-                    <div class="result-item"><strong>Café usado:</strong> <span>{{ recipe.coffee }}g</span></div>
-                    <div class="result-item"><strong>Água necessária:</strong> <span>{{ recipe.water }}ml</span></div>
-                    <div class="result-item"><strong>Moagem:</strong> <span>{{ recipe.grind }}</span></div>
+                    <div class="result-item">
+                        <strong>Método:</strong> 
+                        <span>{{ recipe.method_name }}</span>
+                    </div>
+                    <div class="result-item">
+                        <strong>Café usado:</strong> 
+                        <span>{{ recipe.coffee }}g</span>
+                    </div>
+                    <div class="result-item">
+                        <strong>Água necessária:</strong> 
+                        <span>{{ recipe.water }}ml</span>
+                    </div>
+                    <div class="result-item">
+                        <strong>Moagem:</strong> 
+                        <span>{{ recipe.grind }}</span>
+                    </div>
                 {% endif %}
             </div>
         {% endif %}
     </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
 </html>

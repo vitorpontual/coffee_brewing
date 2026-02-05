@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Coffee Calculator</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="card">
+        <h2>☕ Coffee Helper</h2>
+        <form method="POST">
+            <label for="method">Brewing Method</label>
+            <select name="method" id="method">
+                {% for key, data in methods.items() %}
+                    <option value="{{ key }}">{{ data.nome }}</option>
+                {% endfor %}
+            </select>
+
+            <label for="coffee">Coffee Beans (g)</label>
+            <input type="number" step="0.1" name="coffee" id="coffee" placeholder="e.g. 15.5" required>
+
+            <button type="submit">Calculate Water</button>
+        </form>
+
+        {% if recipe %}
+            <div class="result-container">
+                {% if recipe is string %}
+                    <p>{{ recipe }}</p>
+                {% else %}
+                    <div class="result-item"><strong>Método:</strong> <span>{{ recipe.method_name }}</span></div>
+                    <div class="result-item"><strong>Café usado:</strong> <span>{{ recipe.coffee }}g</span></div>
+                    <div class="result-item"><strong>Água necessária:</strong> <span>{{ recipe.water }}ml</span></div>
+                    <div class="result-item"><strong>Moagem:</strong> <span>{{ recipe.grind }}</span></div>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
